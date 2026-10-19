@@ -1,0 +1,29 @@
+### 1) Normal bölme -> 200
+POST http://127.0.0.1:5000/api/calculate
+Content-Type: application/json
+
+{"a": 8, "b": 2, "operation": "divide"}
+
+### 2) Toplama -> 200
+POST http://127.0.0.1:5000/api/calculate
+Content-Type: application/json
+
+{"a": 2.5, "b": 4, "operation": "add"}
+
+### 3) Sıfıra bölme -> 400
+POST http://127.0.0.1:5000/api/calculate
+Content-Type: application/json
+
+{"a": 5, "b": 0, "operation": "divide"}
+
+### 4) Geçersiz sayı -> 400
+POST http://127.0.0.1:5000/api/calculate
+Content-Type: application/json
+
+{"a": "abc", "b": 2, "operation": "add"}
+
+### 5) Bilinmeyen işlem -> 400
+POST http://127.0.0.1:5000/api/calculate
+Content-Type: application/json
+
+{"a": 5, "b": 2, "operation": "power"}
