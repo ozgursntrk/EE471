@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <!-- Üst çubuk: filtreler ve ekle butonu -->
+  <header class="toolbar">
+    <label class="toggle">
+      <input type="checkbox" id="available-only">
+      <span>Available Only</span>
+    </label>
+    <div class="type-filter">
+      <button class="filter-btn active" data-type="all">All</button>
+      <button class="filter-btn" data-type="book">Books</button>
+      <button class="filter-btn" data-type="dvd">DVDs</button>
+    </div>
+    <button id="add-btn" class="primary">+ Add Item</button>
+  </header>
+
+  <!-- Hata alanı (API'den gelen mesajlar) -->
+  <div id="error" class="error hidden"></div>
+  <div id="info" class="info hidden"></div>
+  <!-- Liste ve boş durum -->
+  <main>
+    <div id="empty" class="empty hidden">No items yet. Click "+ Add Item" to add one.</div>
+    <div id="item-list" class="grid"></div>
+  </main>
+
+  <!-- Ekle / Düzenle formu (açılır pencere) -->
+  <div id="modal" class="modal hidden">
+    <form id="item-form" class="modal-box">
+      <h2 id="form-title">Add New Item</h2>
+      <label>Title <input id="f-title" type="text"></label>
+      <label>Author / Director <input id="f-author" type="text"></label>
+      <div class="row">
+        <label>Media Type
+          <select id="f-type">
+            <option value="book">Book</option>
+            <option value="dvd">DVD</option>
+          </select>
+        </label>
+        <label><span id="f-number-label">Page Count</span>
+          <input id="f-number" type="number" min="1">
+        </label>
+      </div>
+      <div id="form-error" class="error hidden"></div>
+      <div class="modal-actions">
+        <button type="button" id="cancel-btn">Cancel</button>
+        <button type="submit" class="primary">Save Item</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

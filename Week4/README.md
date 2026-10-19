@@ -14,3 +14,15 @@ python app.py
 Open http://127.0.0.1:5000 in the browser.
 
 API tests: `calculator/tests.http` (VSCode REST Client extension)
+
+## Section 2 – Library App
+```
+cd Week4/library
+pip install -r requirements.txt
+python app.py
+```
+Open http://127.0.0.1:5000 in the browser.
+
+- Model: `library/custom_classes.py` (all rules)
+- API: `library/app.py` (HTTP → method calls only)
+- Tests: `python run_tests.py` (runs all 24 endpoint tests while the server is running) or `library/tests.http`

@@ -1,0 +1,74 @@
+:root {
+  --navy: #1e2a5a;
+  --bg: #f1f3f7;
+  --border: #e2e5ec;
+  --green: #16a34a;
+  --red: #dc2626;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Inter, Arial, sans-serif; background: var(--bg); color: #111; }
+button { font: inherit; cursor: pointer; border-radius: 6px; }
+
+/* Üst çubuk */
+.toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap;
+  padding: 16px 24px; background: white; border-bottom: 1px solid var(--border);
+}
+.toggle { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.type-filter { display: flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.filter-btn { background: white; border: none; border-radius: 0; padding: 6px 14px; }
+.filter-btn.active { background: var(--navy); color: white; }
+.primary { background: var(--navy); color: white; border: none; padding: 8px 14px; }
+
+/* Kartlar */
+main { padding: 24px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+.card.out { background: #e9ebf0; }
+.card h3 { margin: 0; font-size: 17px; }
+.author { margin: 2px 0 8px; color: #666; font-size: 13px; }
+.badge {
+  display: inline-block; padding: 1px 10px; font-size: 12px;
+  border: 1px solid #c7cce0; border-radius: 12px; background: #eef0f8;
+}
+.meta { display: flex; justify-content: space-between; align-items: center; margin: 12px 0; font-size: 13px; }
+.status { border-radius: 12px; padding: 2px 10px; font-size: 12px; }
+.status.available { color: var(--green); border: 1px solid var(--green); }
+.status.checked-out { color: #666; border: 1px solid #999; }
+.actions { display: flex; gap: 6px; }
+.actions .primary { flex: 1; }
+.icon { background: white; border: 1px solid var(--border); padding: 6px 8px; }
+.icon.danger { border-color: var(--red); }
+
+/* Hata ve boş durum */
+.error {
+  background: #fee2e2; color: var(--red); border: 1px solid #fca5a5;
+  padding: 10px 14px; border-radius: 8px; margin: 16px 24px 0;
+}
+.modal-box .error { margin: 4px 0 0; }
+.empty { text-align: center; color: #666; padding: 60px 0; }
+.hidden { display: none !important; }
+
+/* Açılır form */
+.modal {
+  position: fixed; inset: 0; background: rgba(0, 0, 0, 0.45);
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-box {
+  background: white; border-radius: 12px; padding: 24px; width: 380px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.modal-box h2 { margin: 0 0 4px; font-size: 18px; }
+.modal-box label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; flex: 1; }
+.modal-box input, .modal-box select {
+  padding: 8px; border: 1px solid var(--border); border-radius: 6px; font: inherit;
+}
+.row { display: flex; gap: 12px; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 8px; }
+.modal-actions button[type="button"] { background: white; border: 1px solid var(--border); padding: 8px 14px; }
+
+.info {
+  background: #dcfce7; color: #166534; border: 1px solid #86efac;
+  padding: 10px 14px; border-radius: 8px; margin: 16px 24px 0;
+}
