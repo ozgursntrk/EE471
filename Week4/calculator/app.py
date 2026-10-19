@@ -24,7 +24,6 @@ def index():
 
 @app.route("/api/calculate", methods=["POST"])
 def api_calculate():
-    print("GELEN:", request.headers.get("Content-Type"), request.data)
     data = request.get_json(force=True, silent=True)
     if data is None:
         return jsonify({"error": "Request body must be JSON"}), 400
