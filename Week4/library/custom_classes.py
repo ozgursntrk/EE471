@@ -1,7 +1,7 @@
 """Library media classes: generic items, books, DVDs and a collection."""
 
 
-# ---------- Madde 1: Özel hata sınıfları ----------
+# ---------- Özel hata sınıfları ----------
 class ItemNotFoundError(Exception):
     """Raised when no item exists with the given id."""
 
@@ -17,12 +17,11 @@ class MediaItem:
 
     def __init__(self, title, author, is_available=True):
         """Create an item with its title and author; is_available defaults to True."""
-        self.id = None  # Madde 2: id'yi LibraryCollection.add_item() verir
+        self.id = None  # id'yi LibraryCollection.add_item() verir
         self.title = title
         self.author = author
         self.is_available = is_available
 
-    # ---------- Madde 4: yazı yerine hata fırlat ----------
     def checkout(self):
         """Check the item out. Raise ItemStateError if it is already out."""
         if not self.is_available:
@@ -37,7 +36,6 @@ class MediaItem:
         self.is_available = True
         return "Successful return"
 
-    # ---------- Madde 3: sözlüğe çevir ----------
     def to_dict(self):
         """Return the item's data as a dictionary (ready for JSON)."""
         return {
@@ -85,7 +83,6 @@ class DVD(MediaItem):
         super().__init__(title, author, is_available)
         self.duration_minutes = duration_minutes
 
-    # ---------- Madde 5: print yok, mesajın içinde döndür ----------
     def checkout(self):
         """Check out the DVD and include the care reminder in the message."""
         result = super().checkout()  # zaten dışarıdaysa burada hata fırlar
@@ -108,7 +105,7 @@ class LibraryCollection:
     def __init__(self):
         """Start with an empty collection."""
         self.items = []
-        self._next_id = 1  # Madde 2: silinse bile geri sayılmayan sayaç
+        self._next_id = 1  # silinse bile geri sayılmayan sayaç
 
     def add_item(self, item):
         """Give the item a new unique id, add it, and return the id."""
@@ -121,7 +118,6 @@ class LibraryCollection:
         """Return the titles of the items that are currently available."""
         return [item.title for item in self.items if item.is_available]
 
-    # ---------- Madde 6: yeni metotlar ----------
     def get_item(self, item_id):
         """Return the item with this id, or raise ItemNotFoundError."""
         for item in self.items:
@@ -140,11 +136,8 @@ class LibraryCollection:
             result = [item for item in result if item.item_type == item_type]
         return list(result)
 
-    def update_item(self, item_id, **fields):
-        """Update only editable fields. Raise ValueError for forbidden or invalid fields."""
-        item = self.get_item(item_id)
-
-        # 1) Önce hepsini kontrol et (biri hatalıysa hiçbirini değiştirme)
+    def _validate_fields(self, item, fields):
+        """Check field names and values. Raise ValueError if something is wrong."""
         for name, value in fields.items():
             if name in self.PROTECTED_FIELDS:
                 raise ValueError(f"Field '{name}' cannot be changed")
@@ -161,12 +154,46 @@ class LibraryCollection:
                 if not isinstance(value, int) or isinstance(value, bool) or value <= 0:
                     raise ValueError(f"'{name}' must be a positive whole number")
 
-        # 2) Hepsi geçerliyse uygula
-        for name, value in fields.items():
+    def update_item(self, item_id, **fields):
+        """Update only editable fields. Raise ValueError for forbidden or invalid fields."""
+        item = self.get_item(item_id)
+        self._validate_fields(item, fields)  # önce hepsini kontrol et
+        for name, value in fields.items():   # sonra uygula
             if name == "duration":
                 item.duration_minutes = value
             else:
                 setattr(item, name, value)
+        return item
+
+    def replace_item(self, item_id, **fields):
+        """Replace ALL editable fields (used by PUT). Every field must be given."""
+        item = self.get_item(item_id)
+        required = {"title", "author"}
+        if isinstance(item, Book):
+            required.add("page_count")
+        if isinstance(item, DVD):
+            required.add("duration")
+        missing = required - set(fields)
+        if missing:
+            raise ValueError(f"Missing fields: {', '.join(sorted(missing))}")
+        return self.update_item(item_id, **fields)
+
+    def create_item(self, item_type, title, author, page_count=None, duration=None):
+        """Create a Book or DVD from raw values, validate it, add it, and return it."""
+        if item_type == "book":
+            if duration is not None:
+                raise ValueError("Books do not have a duration")
+            item = Book(title, author, page_count)
+            fields = {"title": title, "author": author, "page_count": page_count}
+        elif item_type == "dvd":
+            if page_count is not None:
+                raise ValueError("DVDs do not have a page_count")
+            item = DVD(title, author, duration)
+            fields = {"title": title, "author": author, "duration": duration}
+        else:
+            raise ValueError("'type' must be 'book' or 'dvd'")
+        self._validate_fields(item, fields)
+        self.add_item(item)
         return item
 
     def remove_item(self, item_id):

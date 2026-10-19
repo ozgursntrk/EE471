@@ -1,0 +1,100 @@
+@base = http://127.0.0.1:5000/api
+
+### 1) Tüm öğeler -> 200
+GET {{base}}/items
+
+### 2) Sadece müsait olanlar -> 200
+GET {{base}}/items?available=true
+
+### 3) Sadece kitaplar -> 200
+GET {{base}}/items?type=book
+
+### 4) Hatalı filtre -> 400
+GET {{base}}/items?type=cd
+
+### 5) Tek öğe -> 200
+GET {{base}}/items/1
+
+### 6) Olmayan öğe -> 404
+GET {{base}}/items/99
+
+### 7) Kitap ekle -> 201
+POST {{base}}/items
+Content-Type: application/json
+
+{"type": "book", "title": "The Catcher in the Rye", "author": "J.D. Salinger", "page_count": 220}
+
+### 8) DVD ekle -> 201
+POST {{base}}/items
+Content-Type: application/json
+
+{"type": "dvd", "title": "Interstellar", "author": "Christopher Nolan", "duration": 169}
+
+### 9) Eksik alanla ekle -> 400
+POST {{base}}/items
+Content-Type: application/json
+
+{"type": "book", "author": "Someone", "page_count": 100}
+
+### 10) PUT: tüm alanları değiştir -> 200
+PUT {{base}}/items/5
+Content-Type: application/json
+
+{"title": "Catcher (2nd ed.)", "author": "J.D. Salinger", "page_count": 240}
+
+### 11) PUT eksik alan -> 400
+PUT {{base}}/items/5
+Content-Type: application/json
+
+{"title": "Only title"}
+
+### 12) PUT olmayan öğe -> 404
+PUT {{base}}/items/99
+Content-Type: application/json
+
+{"title": "X", "author": "Y", "page_count": 10}
+
+### 13) PATCH: tek alan değiştir -> 200
+PATCH {{base}}/items/2
+Content-Type: application/json
+
+{"duration": 150}
+
+### 14) PATCH yasak alan -> 400
+PATCH {{base}}/items/2
+Content-Type: application/json
+
+{"id": 9}
+
+### 15) PATCH olmayan öğe -> 404
+PATCH {{base}}/items/99
+Content-Type: application/json
+
+{"title": "X"}
+
+### 16) Checkout -> 200
+POST {{base}}/items/2/checkout
+
+### 17) Tekrar checkout -> 409
+POST {{base}}/items/2/checkout
+
+### 18) Olmayan öğe checkout -> 404
+POST {{base}}/items/99/checkout
+
+### 19) Dışarıdaki öğeyi sil -> 409
+DELETE {{base}}/items/2
+
+### 20) Return -> 200
+POST {{base}}/items/2/return
+
+### 21) Tekrar return -> 409
+POST {{base}}/items/2/return
+
+### 22) Olmayan öğe return -> 404
+POST {{base}}/items/99/return
+
+### 23) Sil -> 204
+DELETE {{base}}/items/2
+
+### 24) Silineni tekrar sil -> 404
+DELETE {{base}}/items/2
