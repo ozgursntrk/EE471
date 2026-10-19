@@ -16,6 +16,7 @@ Open http://127.0.0.1:5000 in the browser.
 API tests: `calculator/tests.http` (VSCode REST Client extension)
 
 ## Section 2 – Library App
+![Library app screenshot](design/library-app.png)
 ```
 cd Week4/library
 pip install -r requirements.txt
