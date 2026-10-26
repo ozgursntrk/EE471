@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text-to-Speech</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="card">
+    <h1>🎤 Text-to-Speech</h1>
+    <p class="subtitle">Powered by Azure AI Speech</p>
+
+    <label for="text">Enter text to convert to speech:</label>
+    <textarea id="text" rows="5" maxlength="1000" placeholder="Hello, EE471 class"></textarea>
+
+    <label for="voice">Voice:</label>
+    <select id="voice">
+      {% for value, name in voices.items() %}
+        <option value="{{ value }}">{{ name }}</option>
+      {% endfor %}
+    </select>
+
+    <div class="buttons">
+      <button id="synth-btn" class="primary">🔊 Synthesize Speech</button>
+      <button id="clear-btn" class="secondary">Clear</button>
+    </div>
+
+    <div id="status" class="status hidden"></div>
+
+    <section id="result" class="result hidden">
+      <h2>Generated Audio:</h2>
+      <audio id="player" controls></audio>
+      <a id="download" class="download" download="speech.wav">⬇️ Download Audio</a>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
