@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice Calculator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="device">
+    <!-- Microphone button: click to start listening, click again to stop -->
+    <button id="mic-btn" class="mic" title="Click and say e.g. 'five plus two is'">
+      <svg viewBox="0 0 24 24" width="42" height="42" fill="none" stroke="currentColor"
+           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="2" width="6" height="12" rx="3"></rect>
+        <path d="M5 11a7 7 0 0 0 14 0"></path>
+        <line x1="12" y1="18" x2="12" y2="22"></line>
+      </svg>
+    </button>
+
+    <div class="calculator">
+      <div id="display" class="display">0</div>
+      <div class="buttons">
+        <button data-key="7">7</button>
+        <button data-key="8">8</button>
+        <button data-key="9">9</button>
+        <button data-key="/" class="op">÷</button>
+        <button data-key="4">4</button>
+        <button data-key="5">5</button>
+        <button data-key="6">6</button>
+        <button data-key="*" class="op">×</button>
+        <button data-key="1">1</button>
+        <button data-key="2">2</button>
+        <button data-key="3">3</button>
+        <button data-key="-" class="op">−</button>
+        <button data-key="0">0</button>
+        <button data-key=".">.</button>
+        <button data-key="=" class="equals">=</button>
+        <button data-key="+" class="op">+</button>
+      </div>
+    </div>
+  </div>
+
+  <p id="status" class="status">Press the buttons or click the microphone and speak.</p>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
