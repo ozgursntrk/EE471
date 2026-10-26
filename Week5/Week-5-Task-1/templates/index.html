@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speech-to-Text</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="card">
+    <h1>🎤 Speech-to-Text</h1>
+    <p class="subtitle">Powered by Azure AI Speech</p>
+
+    <label>Record or upload audio to convert to text:</label>
+    <div class="buttons">
+      <button id="record-btn" class="primary">🎙️ Start Recording</button>
+      <button id="stop-btn" class="danger" disabled>⏹️ Stop Recording</button>
+    </div>
+    <input type="file" id="file-input" accept="audio/*">
+
+    <label for="language">Language:</label>
+    <select id="language">
+      {% for value, name in languages.items() %}
+        <option value="{{ value }}">{{ name }}</option>
+      {% endfor %}
+    </select>
+
+    <audio id="preview" controls class="hidden"></audio>
+
+    <div class="buttons">
+      <button id="transcribe-btn" class="primary" disabled>📝 Transcribe Audio</button>
+      <button id="clear-btn" class="secondary">Clear</button>
+    </div>
+
+    <div id="status" class="status hidden"></div>
+
+    <section id="result" class="result hidden">
+      <h2>Transcription:</h2>
+      <p id="transcript" class="transcript"></p>
+      <button id="copy-btn" class="secondary">📋 Copy Text</button>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
