@@ -3,3 +3,5 @@ __pycache__/
 *.wav
 *.pth
 input.jpg
+postman_body.json
+cat.jpg
