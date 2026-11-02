@@ -1,0 +1,48 @@
+body {
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  height: 100vh; margin: 0;
+  background: #f5f5f5;
+  font-family: Inter, Arial, sans-serif;
+}
+
+/* Blue body that holds the microphone and the calculator (like the design) */
+.device {
+  display: flex; align-items: center; gap: 18px;
+  background: #0a74c4; padding: 6px 6px 6px 14px;
+}
+
+/* Round microphone button */
+.mic {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: #a0a0a0; color: #111; border: 2px solid #555;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.mic:hover { opacity: 0.9; }
+.mic.listening { background: #dc2626; color: white; animation: pulse 1s infinite; }
+.mic.busy { background: #f59e0b; cursor: wait; }
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+  50% { box-shadow: 0 0 0 12px rgba(220, 38, 38, 0); }
+}
+
+/* Calculator (same look as Week 4) */
+.calculator { width: 228px; }
+.display {
+  background: white; height: 50px; line-height: 50px;
+  font-size: 28px; text-align: right; padding: 0 10px;
+  margin-bottom: 6px; overflow: hidden; cursor: pointer;
+}
+.buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.buttons button {
+  height: 50px; border: none; color: white; background: #808080;
+  font-size: 22px; font-weight: bold; cursor: pointer;
+  transition: transform 0.1s, filter 0.1s;
+}
+.buttons .op { background: #a0a0a0; }
+.buttons .equals { background: #0a4f8f; }
+.buttons button:hover { opacity: 0.85; }
+.buttons button.pressed { transform: scale(0.92); filter: brightness(1.4); }
+
+.status { margin-top: 18px; color: #444; min-height: 1.4em; text-align: center; }

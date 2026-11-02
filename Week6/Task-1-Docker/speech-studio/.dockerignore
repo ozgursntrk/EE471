@@ -1,0 +1,8 @@
+# Never copy secrets into the image
+.env
+
+# Not needed in the image
+__pycache__/
+*.wav
+Dockerfile
+.dockerignore
