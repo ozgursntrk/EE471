@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <!-- Üst çubuk: filtreler ve ekle butonu -->
+  <header class="toolbar">
+    <label class="toggle">
+      <input type="checkbox" id="available-only">
+      <span>Available Only</span>
+    </label>
+    <div class="type-filter">
+      <button class="filter-btn active" data-type="all">All</button>
+      <button class="filter-btn" data-type="book">Books</button>
+      <button class="filter-btn" data-type="dvd">DVDs</button>
+    </div>
+    <button id="add-btn" class="primary">+ Add Item</button>
+  </header>
+
+  <!-- Voice librarian: speak or type a command -->
+  <section class="voice">
+    <div class="voice-row">
+      <button id="mic-btn" class="mic" title="Speak a command">🎤</button>
+      <form id="text-form" class="text-form">
+        <input id="text-input" type="text" autocomplete="off"
+               placeholder='Or type a command, e.g. "Check out item 3"'>
+        <button type="submit" class="primary">Run</button>
+      </form>
+    </div>
+    <p id="voice-status" class="voice-status">Click the microphone, say a command, then click it again.</p>
+
+    <div id="voice-log" class="voice-log hidden">
+      <div><b>You said:</b> <span id="v-heard"></span></div>
+      <div><b>Request:</b> <code id="v-request"></code></div>
+      <div><b>Response:</b> <code id="v-status"></code></div>
+      <pre id="v-response"></pre>
+      <div class="reply"><b>🔊 Librarian:</b> <span id="v-reply"></span></div>
+    </div>
+
+    <details class="examples">
+      <summary>Example commands</summary>
+      <ul>
+        <li>Create item, type book, title The Catcher in the Rye, author J.D. Salinger, pages 220</li>
+        <li>Create item, type DVD, title Interstellar, director Christopher Nolan, duration 169</li>
+        <li>List items · List available books · List checked out DVDs</li>
+        <li>Show item 3</li>
+        <li>Replace item 3, title Animal Farm, author George Orwell, pages 112</li>
+        <li>Update item 2, duration 150</li>
+        <li>Delete item 4</li>
+        <li>Check out item 3 · Return item 3</li>
+      </ul>
+    </details>
+  </section>
+
+  <!-- Hata alanı (API'den gelen mesajlar) -->
+  <div id="error" class="error hidden"></div>
+  <div id="info" class="info hidden"></div>
+  <!-- Liste ve boş durum -->
+  <main>
+    <div id="empty" class="empty hidden">No items yet. Click "+ Add Item" to add one.</div>
+    <div id="item-list" class="grid"></div>
+  </main>
+
+  <!-- Ekle / Düzenle formu (açılır pencere) -->
+  <div id="modal" class="modal hidden">
+    <form id="item-form" class="modal-box">
+      <h2 id="form-title">Add New Item</h2>
+      <label>Title <input id="f-title" type="text"></label>
+      <label>Author / Director <input id="f-author" type="text"></label>
+      <div class="row">
+        <label>Media Type
+          <select id="f-type">
+            <option value="book">Book</option>
+            <option value="dvd">DVD</option>
+          </select>
+        </label>
+        <label><span id="f-number-label">Page Count</span>
+          <input id="f-number" type="number" min="1">
+        </label>
+      </div>
+      <div id="form-error" class="error hidden"></div>
+      <div class="modal-actions">
+        <button type="button" id="cancel-btn">Cancel</button>
+        <button type="submit" class="primary">Save Item</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
