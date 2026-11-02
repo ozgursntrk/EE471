@@ -1,0 +1,19 @@
+# Runs the Cog model and the website together.
+# First build the model image once:  cd model && cog build -t cat-classifier
+services:
+  model:
+    image: cat-classifier          # image built by `cog build`
+    container_name: cat-model
+    ports:
+      - "5000:5000"                # Cog HTTP API (Postman sends requests here)
+
+  website:
+    build: ./website               # built from website/Dockerfile
+    image: cat-website
+    container_name: cat-website
+    ports:
+      - "8000:5000"                # open http://localhost:8000
+    environment:
+      - COG_URL=http://model:5000  # "model" = the service name above
+    depends_on:
+      - model

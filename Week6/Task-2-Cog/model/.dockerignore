@@ -1,0 +1,4 @@
+# Not needed inside the image
+__pycache__/
+input.jpg
+.dockerignore
