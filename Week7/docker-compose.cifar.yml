@@ -1,0 +1,34 @@
+# CIFAR-10 classifier: website + two Cog models (baseline and optimized) from the same image.
+# Build the model image first:  cd classifier && cog build -t week7-classifier
+services:
+  baseline:
+    image: week7-classifier
+    container_name: cifar-baseline
+    environment:
+      - DATASET=cifar
+      - VARIANT=baseline
+    ports:
+      - "5001:5000"               # Cog API of the baseline model (Postman)
+
+  optimized:
+    image: week7-classifier
+    container_name: cifar-optimized
+    environment:
+      - DATASET=cifar
+      - VARIANT=optimized
+    ports:
+      - "5002:5000"               # Cog API of the optimized model (Postman)
+
+  website:
+    build: ./website
+    image: week7-website
+    container_name: cifar-website
+    environment:
+      - DATASET=cifar
+      - BASELINE_URL=http://baseline:5000
+      - OPTIMIZED_URL=http://optimized:5000
+    ports:
+      - "8000:5000"               # open http://localhost:8000
+    depends_on:
+      - baseline
+      - optimized

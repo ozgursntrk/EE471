@@ -1,0 +1,56 @@
+{
+  "dataset": "fashion",
+  "model": "baseline",
+  "config": {
+    "hidden": 512,
+    "dropout": 0.0,
+    "optimizer": "sgd",
+    "lr": 0.001,
+    "momentum": 0.0,
+    "weight_decay": 0.0,
+    "batch_size": 64,
+    "epochs": 5
+  },
+  "test_accuracy": 0.6504,
+  "per_class_accuracy": {
+    "T-shirt/top": 0.791,
+    "Trouser": 0.902,
+    "Pullover": 0.647,
+    "Dress": 0.772,
+    "Coat": 0.561,
+    "Sandal": 0.02,
+    "Shirt": 0.075,
+    "Sneaker": 0.896,
+    "Bag": 0.908,
+    "Ankle boot": 0.932
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 2.1691,
+      "accuracy": 0.4986
+    },
+    {
+      "epoch": 2,
+      "loss": 1.9165,
+      "accuracy": 0.6163
+    },
+    {
+      "epoch": 3,
+      "loss": 1.5414,
+      "accuracy": 0.5915
+    },
+    {
+      "epoch": 4,
+      "loss": 1.2602,
+      "accuracy": 0.6412
+    },
+    {
+      "epoch": 5,
+      "loss": 1.0897,
+      "accuracy": 0.6504
+    }
+  ],
+  "train_seconds": 32.5,
+  "parameters": 669706
+}

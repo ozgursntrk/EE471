@@ -1,0 +1,106 @@
+{
+  "dataset": "fashion",
+  "model": "optimized",
+  "config": {
+    "optimizer": "sgd",
+    "lr": 0.044133951010782255,
+    "weight_decay": 1e-05,
+    "dropout": 0.0,
+    "momentum": 0.5603848182659086,
+    "hidden": 512,
+    "batch_size": 32,
+    "epochs": 15
+  },
+  "test_accuracy": 0.8894,
+  "per_class_accuracy": {
+    "T-shirt/top": 0.859,
+    "Trouser": 0.977,
+    "Pullover": 0.867,
+    "Dress": 0.939,
+    "Coat": 0.786,
+    "Sandal": 0.973,
+    "Shirt": 0.64,
+    "Sneaker": 0.982,
+    "Bag": 0.949,
+    "Ankle boot": 0.922
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 0.4356,
+      "accuracy": 0.8371
+    },
+    {
+      "epoch": 2,
+      "loss": 0.4264,
+      "accuracy": 0.8449
+    },
+    {
+      "epoch": 3,
+      "loss": 0.3801,
+      "accuracy": 0.863
+    },
+    {
+      "epoch": 4,
+      "loss": 0.3649,
+      "accuracy": 0.8675
+    },
+    {
+      "epoch": 5,
+      "loss": 0.3463,
+      "accuracy": 0.8711
+    },
+    {
+      "epoch": 6,
+      "loss": 0.3552,
+      "accuracy": 0.8761
+    },
+    {
+      "epoch": 7,
+      "loss": 0.3323,
+      "accuracy": 0.8794
+    },
+    {
+      "epoch": 8,
+      "loss": 0.3593,
+      "accuracy": 0.8713
+    },
+    {
+      "epoch": 9,
+      "loss": 0.3427,
+      "accuracy": 0.8757
+    },
+    {
+      "epoch": 10,
+      "loss": 0.3164,
+      "accuracy": 0.8864
+    },
+    {
+      "epoch": 11,
+      "loss": 0.3311,
+      "accuracy": 0.8822
+    },
+    {
+      "epoch": 12,
+      "loss": 0.3381,
+      "accuracy": 0.884
+    },
+    {
+      "epoch": 13,
+      "loss": 0.3395,
+      "accuracy": 0.8817
+    },
+    {
+      "epoch": 14,
+      "loss": 0.3255,
+      "accuracy": 0.8868
+    },
+    {
+      "epoch": 15,
+      "loss": 0.3361,
+      "accuracy": 0.8894
+    }
+  ],
+  "train_seconds": 33.3,
+  "parameters": 669706
+}

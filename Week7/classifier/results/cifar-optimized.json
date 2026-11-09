@@ -1,0 +1,107 @@
+{
+  "dataset": "cifar",
+  "model": "optimized",
+  "config": {
+    "optimizer": "adam",
+    "lr": 0.00021811224182313228,
+    "weight_decay": 0.0001,
+    "dropout": 0.30000000000000004,
+    "momentum": 0.0,
+    "channels": 48,
+    "fc": 120,
+    "batch_size": 32,
+    "epochs": 15
+  },
+  "test_accuracy": 0.7423,
+  "per_class_accuracy": {
+    "airplane": 0.803,
+    "automobile": 0.859,
+    "bird": 0.588,
+    "cat": 0.581,
+    "deer": 0.761,
+    "dog": 0.578,
+    "frog": 0.83,
+    "horse": 0.838,
+    "ship": 0.823,
+    "truck": 0.762
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 1.3713,
+      "accuracy": 0.5064
+    },
+    {
+      "epoch": 2,
+      "loss": 1.1585,
+      "accuracy": 0.5839
+    },
+    {
+      "epoch": 3,
+      "loss": 1.0757,
+      "accuracy": 0.6164
+    },
+    {
+      "epoch": 4,
+      "loss": 0.988,
+      "accuracy": 0.6522
+    },
+    {
+      "epoch": 5,
+      "loss": 0.9292,
+      "accuracy": 0.6753
+    },
+    {
+      "epoch": 6,
+      "loss": 0.8827,
+      "accuracy": 0.698
+    },
+    {
+      "epoch": 7,
+      "loss": 0.8547,
+      "accuracy": 0.7071
+    },
+    {
+      "epoch": 8,
+      "loss": 0.8189,
+      "accuracy": 0.7181
+    },
+    {
+      "epoch": 9,
+      "loss": 0.8454,
+      "accuracy": 0.7119
+    },
+    {
+      "epoch": 10,
+      "loss": 0.7833,
+      "accuracy": 0.7317
+    },
+    {
+      "epoch": 11,
+      "loss": 0.7809,
+      "accuracy": 0.7293
+    },
+    {
+      "epoch": 12,
+      "loss": 0.7652,
+      "accuracy": 0.742
+    },
+    {
+      "epoch": 13,
+      "loss": 0.7717,
+      "accuracy": 0.7447
+    },
+    {
+      "epoch": 14,
+      "loss": 0.7744,
+      "accuracy": 0.7424
+    },
+    {
+      "epoch": 15,
+      "loss": 0.7988,
+      "accuracy": 0.7423
+    }
+  ],
+  "train_seconds": 43.6,
+  "parameters": 552510
+}

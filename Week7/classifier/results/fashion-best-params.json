@@ -1,0 +1,10 @@
+{
+  "optimizer": "sgd",
+  "lr": 0.044133951010782255,
+  "weight_decay": 1e-05,
+  "dropout": 0.0,
+  "momentum": 0.5603848182659086,
+  "hidden": 512,
+  "batch_size": 32,
+  "epochs": 15
+}

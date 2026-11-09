@@ -1,0 +1,11 @@
+{
+  "optimizer": "adam",
+  "lr": 0.00021811224182313228,
+  "weight_decay": 0.0001,
+  "dropout": 0.30000000000000004,
+  "momentum": 0.0,
+  "channels": 48,
+  "fc": 120,
+  "batch_size": 32,
+  "epochs": 15
+}

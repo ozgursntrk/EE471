@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>{{ title }}</h1>
+      <p class="subtitle">{{ subtitle }}</p>
+    </header>
+
+    <section class="upload">
+      <label class="drop" id="drop">
+        <input type="file" id="file" accept="image/jpeg,image/png,image/webp" hidden>
+        <img id="preview" alt="" hidden>
+        <span id="hint">Click to choose an image<br><small>or drag &amp; drop it here</small></span>
+      </label>
+      <button id="classify" disabled>Classify with both models</button>
+      <p id="status" class="status"></p>
+    </section>
+
+    <section class="compare">
+      <article class="model" id="baseline">
+        <h2>Baseline model</h2>
+        <p class="note">Tutorial hyperparameters</p>
+        <div class="result"></div>
+      </article>
+      <article class="model" id="optimized">
+        <h2>Optimized model</h2>
+        <p class="note">Hyperparameters found with Optuna</p>
+        <div class="result"></div>
+      </article>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

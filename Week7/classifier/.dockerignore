@@ -1,0 +1,9 @@
+# Only the inference code and the trained weights go into the image
+data/
+samples/
+results/
+__pycache__/
+train.py
+hpo.py
+export_samples.py
+.dockerignore
