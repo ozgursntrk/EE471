@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DreamCanvas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<main class="app">
+
+    <!-- Title + icon -->
+    <header class="header">
+        <div>
+            <h1>DreamCanvas</h1>
+            <p class="subtitle">Chat, speak and paint with AI</p>
+        </div>
+        <div class="icon">✨</div>
+    </header>
+
+    <!-- Image output box with the paint button -->
+    <section class="image-box" id="imageBox">
+        <p class="placeholder" id="placeholder">Your image will appear here</p>
+        <img id="outputImage" alt="Generated image" hidden>
+        <div class="loading" id="imageLoading" hidden><div class="spinner"></div>Painting…</div>
+        <button class="round-button paint-button" id="paintButton" title="Generate image">🎨</button>
+    </section>
+
+    <!-- Prompt input box -->
+    <textarea class="prompt-input" id="promptInput"
+              placeholder="Describe the image you want to paint…"></textarea>
+
+    <!-- Chat history -->
+    <section class="chat-history" id="chatHistory"></section>
+
+    <!-- Mic button, message box, send button -->
+    <footer class="message-row">
+        <button class="round-button mic-button" id="micButton" title="Hold a conversation by voice">🎤</button>
+        <input class="message-box" id="messageInput" type="text" placeholder="Type or speak a message…">
+        <button class="round-button send-button" id="sendButton" title="Send">➤</button>
+    </footer>
+
+    <p class="status" id="status"></p>
+</main>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

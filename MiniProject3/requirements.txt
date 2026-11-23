@@ -1,0 +1,6 @@
+torch
+transformers<5
+diffusers<0.40
+accelerate
+flask
+numpy

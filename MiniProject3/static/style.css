@@ -1,0 +1,235 @@
+/* Colors and sizes are taken from the Figma design (600 px wide frame) */
+:root {
+    --background: #0F1020;
+    --panel: #1B1D33;
+    --border: #2E3150;
+    --purple: #7C5CFF;
+    --bot-bubble: #2A2D4A;
+    --text: #FFFFFF;
+    --text-soft: #E6E7F2;
+    --text-muted: #8A8FB3;
+    --placeholder: #5C6080;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }     /* hidden must win over display: flex/grid */
+
+body {
+    margin: 0;
+    background: var(--background);
+    color: var(--text);
+    font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+.app {
+    width: 600px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 40px 40px 16px;
+}
+
+/* ---------- header ---------- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 88px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 44px;
+}
+
+.subtitle {
+    margin: 4px 0 0;
+    font-size: 16px;
+    color: var(--text-muted);
+}
+
+.icon {
+    width: 64px;
+    height: 64px;
+    margin-top: -4px;
+    border-radius: 50%;
+    background: var(--purple);
+    display: grid;
+    place-items: center;
+    font-size: 28px;
+}
+
+/* ---------- shared panel style ---------- */
+.image-box, .prompt-input, .chat-history, .message-box {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: inherit;
+}
+
+/* ---------- image box ---------- */
+.image-box {
+    position: relative;
+    height: 360px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.placeholder {
+    color: var(--placeholder);
+    font-size: 16px;
+}
+
+#outputImage {
+    position: absolute;      /* exactly the size of the box, not the size of the image */
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;     /* the image is square, the box is wider: show all of it */
+}
+
+.loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: rgba(15, 16, 32, 0.7);
+    color: var(--text-muted);
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--border);
+    border-top-color: var(--purple);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- round buttons (paint, mic, send) ---------- */
+.round-button {
+    width: 56px;
+    height: 56px;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.15s, filter 0.15s;
+}
+
+.round-button:hover { transform: scale(1.06); filter: brightness(1.1); }
+.round-button:disabled { opacity: 0.5; cursor: wait; transform: none; }
+
+.paint-button {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    background: var(--purple);
+}
+
+/* ---------- prompt input ---------- */
+.prompt-input {
+    display: block;
+    width: 100%;
+    height: 80px;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 15px;
+    resize: none;
+}
+
+/* ---------- chat history ---------- */
+.chat-history {
+    height: 320px;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 16px;
+    overflow-y: auto;
+    scrollbar-color: var(--border) transparent;     /* dark scrollbar */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.bubble {
+    max-width: 75%;
+    padding: 14px 18px;
+    border-radius: 14px;
+    font-size: 14px;
+    line-height: 1.45;
+    white-space: pre-wrap;
+}
+
+.bubble.user {
+    align-self: flex-end;
+    background: var(--purple);
+    color: var(--text);
+}
+
+.bubble.bot {
+    align-self: flex-start;
+    background: var(--bot-bubble);
+    color: var(--text-soft);
+}
+
+.bubble.typing { color: var(--text-muted); font-style: italic; }
+
+.use-prompt {
+    display: block;
+    margin-top: 8px;
+    padding: 0;
+    border: none;
+    background: none;
+    color: #B8A8FF;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.use-prompt:hover { text-decoration: underline; }
+
+/* ---------- bottom row ---------- */
+.message-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.mic-button { background: var(--bot-bubble); }
+.mic-button.recording { background: #E5484D; animation: pulse 1s infinite; }
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(229, 72, 77, 0.6); }
+    50% { box-shadow: 0 0 0 10px rgba(229, 72, 77, 0); }
+}
+
+.message-box {
+    flex: 1;
+    height: 56px;
+    padding: 0 20px;
+    border-radius: 28px;
+    font-size: 15px;
+}
+
+.send-button { background: var(--purple); color: var(--text); font-size: 22px; }
+
+::placeholder { color: var(--text-muted); }
+textarea:focus, input:focus { outline: 2px solid var(--purple); outline-offset: -1px; }
+
+.status {
+    min-height: 20px;
+    margin: 12px 0 0;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+}
