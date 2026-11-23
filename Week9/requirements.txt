@@ -1,0 +1,7 @@
+torch
+transformers<5
+gradio<6
+sentencepiece
+sacremoses
+numpy
+pillow

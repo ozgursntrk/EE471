@@ -9,4 +9,5 @@ Week7/classifier/data/
 Week7/postman_*.json
 Week8/task1/models/
 Week8/**/images/*-debug.*
-Week8/task1/outputs/
+Week9/task4/saved_model/
+Week7/classifier/.cog/
